@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Home · Polyp IQ Labeling{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h1 class="card-title">Welcome to the Polyp Image Quality Labeling</h1>
+    <p class="card-text">
+      This tool lets signed-in researchers label PNG frames on 5–10 metrics (1–5 scale)
+      to help improve a polyp characterization model.
+    </p>
+    <a class="btn btn-primary" href="{% url 'labeling:start' %}">Start Labeling →</a>
+  </div>
+</div>
+{% endblock %}

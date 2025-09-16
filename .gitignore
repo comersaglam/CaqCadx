@@ -114,3 +114,6 @@ dmypy.json
 
 # macOS
 .DS_Store
+
+# Ignore dataset folder and everything inside
+/dataset/

@@ -1,0 +1,13 @@
+{% load socialaccount %}
+<ul class="list-unstyled d-grid gap-2">
+  {% for provider in socialaccount_providers %}
+    {% if provider.id == "google" %}
+      <li>
+        <a class="btn btn-outline-light w-100"
+           href="{% provider_login_url provider.id process='login' next=redirect_field_value %}">
+          Continue with Google
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

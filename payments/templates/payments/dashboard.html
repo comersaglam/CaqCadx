@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Payments{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Payment Tracking</h2>
+    <p class="card-text">
+      This page will later integrate with a secure provider (Stripe, PayPal, etc.)
+      and show payouts or reimbursements for labeling work.
+    </p>
+    <a href="{% url 'core:home' %}" class="btn btn-secondary">← Back to Home</a>
+  </div>
+</div>
+{% endblock %}

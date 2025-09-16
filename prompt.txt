@@ -1,0 +1,9 @@
+I am creating a website with django for my research dataset's  labeling process. we have a png dataset that will be added into sqlite database with its properties. Users will sign into website an there will be an option for them to start labeling. they will label the pictures according to 5-10 metrics with 1-5 scale. The project is about implementing a image quality model for polyp characterization model to improve accuracy.
+You will follow the prompt and give me intuition while code the instructions
+The website will have a primary page, login/register page, labeling page and payment tracking page.
+Frontend part will be handled later so you only need to create html and basic css (so it wont look weird) beside django. You should use templates, dynamic html creation, authentication considering security (may use auth0 like system, 3rd party auth) and a secure payment tracking system (may be 3rd party aswell). I only need google gmail authentication
+Now you need to guide me through the project. Don't do it yourself but guide me through step by step. I have fundamentals of django but not an expert. First explain what is the next step, than create folder structure, than offer different ways of implementing a thing and why we are implementing, than we implement it together. As i said you are an assistant for me to guide, not the coder.
+I gave you this prompt before. We have followed following steps so far.
+Created a 5 app structure, accounts, images, labeling, payments, core. 
+# TODO I have dataset folder but ı will add the pictures to database later. Now, I need a primary screen and urls handled. 
+How should I proceed? Explain step by step.

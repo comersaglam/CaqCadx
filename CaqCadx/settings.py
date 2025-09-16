@@ -37,6 +37,21 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "django.contrib.sites",
+
+    #allauth
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    #"CaqCadxApp",
+    "payments",
+    "core",
+    "images",
+    "labeling",
+    "accounts",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -45,8 +60,10 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "allauth.account.middleware.AccountMiddleware", # allauth middleware
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "CaqCadx.urls"
@@ -54,7 +71,7 @@ ROOT_URLCONF = "CaqCadx.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [ BASE_DIR / "templates" ], 
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -99,6 +116,23 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",  # default
+    "allauth.account.auth_backends.AuthenticationBackend",  # allauth
+]
+# After successful signup, immediately log the user in
+ACCOUNT_LOGIN_ON_SIGNUP = True
+
+# Where to go after login/signup if no `next` is given
+LOGIN_REDIRECT_URL = "/"
+
+
+LOGIN_REDIRECT_URL = "/"   # where to go after login
+LOGOUT_REDIRECT_URL = "/"  # where to go after logout
+
+# django-allauth settings
+SITE_ID = 1
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
@@ -120,3 +154,36 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+ACCOUNT_ADAPTER = "accounts.adapters.AccountAdapter"
+SOCIALACCOUNT_ADAPTER = "accounts.adapters.SocialAdapter"
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+# Optional but recommended:
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # use email to login
+ACCOUNT_USERNAME_REQUIRED = False
+
+ALLOWED_EMAIL_DOMAINS = {"gmail.com", "yahoo.com", "outlook.com", "hotmail.com",}
+
+
+#EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+#EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+# --- Development-only auth & email settings ---
+if DEBUG:
+    # Don't actually send emails; print them to terminal
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+    # Skip email confirmation for signups (allauth)
+    ACCOUNT_EMAIL_VERIFICATION = "none"   # no confirmation flow
+    ACCOUNT_CONFIRM_EMAIL_ON_GET = True   # (harmless here; immediate confirm if link used)
+
+    # Optional: keep sign-in by email only
+    # allauth now prefers these newer settings (you saw the deprecation warnings)
+    ACCOUNT_LOGIN_METHODS = {"email"}                  # instead of ACCOUNT_AUTHENTICATION_METHOD
+    ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]  # replaces EMAIL_REQUIRED/USERNAME_REQUIRED
+    ACCOUNT_USERNAME_REQUIRED = False  # keep for compatibility; safe to leave until you fully migrate
+

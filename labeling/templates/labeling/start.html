@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Start Labeling{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Labeling Dashboard</h2>
+    <p class="card-text">
+      Once logged in with Google, you’ll see dataset images here. For now, this is just a placeholder.
+    </p>
+    <a href="{% url 'core:home' %}" class="btn btn-secondary">← Back to Home</a>
+  </div>
+</div>
+{% endblock %}
