@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+
+  <h2 class="mb-4">Image Annotation</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="image_id" value="{{ image.id }}">
+
+    <div class="mb-4 text-center">
+
+
+        <img src="{{ MEDIA_URL }}{{ image.path }}" 
+            class="img-fluid border"
+            oncontextmenu="return false;" 
+            ondragstart="return false;" />
+    </div>
+
+    {% if image.is_cut %}
+      <!-- 4 parameters for cut (polyp) images -->
+      <div class="mb-4">
+        <label class="form-label">Localization</label>
+        <div class="btn-group d-flex" role="group">
+          <input type="radio" class="btn-check" name="localization_label" id="loc1" value="1" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="loc1">1</label>
+
+          <input type="radio" class="btn-check" name="localization_label" id="loc2" value="2" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="loc2">2</label>
+
+          <input type="radio" class="btn-check" name="localization_label" id="loc3" value="3" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="loc3">3</label>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Size</label>
+        <div class="btn-group d-flex" role="group">
+          <input type="radio" class="btn-check" name="size_label" id="size1" value="1" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="size1">1</label>
+
+          <input type="radio" class="btn-check" name="size_label" id="size2" value="2" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="size2">2</label>
+
+          <input type="radio" class="btn-check" name="size_label" id="size3" value="3" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="size3">3</label>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Cleanliness</label>
+        <div class="btn-group d-flex" role="group">
+          <input type="radio" class="btn-check" name="cleanliness_label" id="clean1" value="1" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="clean1">1</label>
+
+          <input type="radio" class="btn-check" name="cleanliness_label" id="clean2" value="2" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="clean2">2</label>
+
+          <input type="radio" class="btn-check" name="cleanliness_label" id="clean3" value="3" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="clean3">3</label>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Overall</label>
+        <div class="btn-group d-flex" role="group">
+          <input type="radio" class="btn-check" name="overall" id="ov1" value="1" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ov1">1</label>
+
+          <input type="radio" class="btn-check" name="overall" id="ov2" value="2" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ov2">2</label>
+
+          <input type="radio" class="btn-check" name="overall" id="ov3" value="3" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ov3">3</label>
+        </div>
+      </div>
+
+    {% else %}
+      <!-- 3 parameters for non-cut images -->
+      <div class="mb-4">
+        <label class="form-label">Colon Expansion</label>
+        <div class="btn-group d-flex" role="group">
+          <input type="radio" class="btn-check" name="colonexpansion_label" id="ce1" value="1" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ce1">1</label>
+
+          <input type="radio" class="btn-check" name="colonexpansion_label" id="ce2" value="2" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ce2">2</label>
+
+          <input type="radio" class="btn-check" name="colonexpansion_label" id="ce3" value="3" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ce3">3</label>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Image Cleanliness</label>
+        <div class="btn-group d-flex" role="group">
+          <input type="radio" class="btn-check" name="img_cleanliness" id="ic1" value="1" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ic1">1</label>
+
+          <input type="radio" class="btn-check" name="img_cleanliness" id="ic2" value="2" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ic2">2</label>
+
+          <input type="radio" class="btn-check" name="img_cleanliness" id="ic3" value="3" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="ic3">3</label>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Image Overall</label>
+        <div class="btn-group d-flex" role="group">
+          <input type="radio" class="btn-check" name="img_overall" id="io1" value="1" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="io1">1</label>
+
+          <input type="radio" class="btn-check" name="img_overall" id="io2" value="2" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="io2">2</label>
+
+          <input type="radio" class="btn-check" name="img_overall" id="io3" value="3" autocomplete="off">
+          <label class="btn btn-outline-primary flex-fill" for="io3">3</label>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success btn-lg">Save & Next →</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

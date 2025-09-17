@@ -187,3 +187,6 @@ if DEBUG:
     ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]  # replaces EMAIL_REQUIRED/USERNAME_REQUIRED
     ACCOUNT_USERNAME_REQUIRED = False  # keep for compatibility; safe to leave until you fully migrate
 
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "dataset"
